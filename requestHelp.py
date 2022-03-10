@@ -6,11 +6,11 @@ cur = conn.cursor()
 print("Please enter an application ID")
 application_id = int(input())
 cur.execute("""
-    SELECT employees.name, employees.email, servers.name, employee_id, name
+    SELECT employees.name, employees.email, servers.name, applications.employee_id, applications.name
     FROM applications, employees, servers
     WHERE applications.employee_id=employees.employee_id
         AND applications.application_id=servers.application_id
-        AND application_id=%s
+        AND applications.application_id=%s
 """, (application_id,));
 for row in cur:
     employee = row[0]
